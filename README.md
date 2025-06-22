@@ -2,6 +2,20 @@
 
 This repository provides the code, scripts, and configurations necessary to reproduce the experimental results of our ICDE 2026 submission titled *Wild Turkey*. The artifact has been anonymized to preserve the integrity of the double-blind review process.
 
+## Introduction
+
+**Wild Turkey** is a key-value store framework that rethinks the integration of learned indexes into LSM-tree systems, particularly under write-intensive workloads. While learned indexes are effective for accelerating point lookups, prior approaches overlook the compaction-heavy and write-sensitive nature of LSM-trees.
+
+Wild Turkey introduces two key mechanisms to address this:
+
+- **Level-Aware Compaction (LAC):** Dynamically sizes SSTables per level based on read/write patterns, reducing write amplification and compaction overhead.
+- **Wild-Learning:** An RL-based mechanism that adaptively tunes the error bounds of learned indexes according to the data distribution of each SSTable.
+
+Integrated into LevelDB and RocksDB, Wild Turkey improves write throughput by up to **1.84×**, reduces write stall time by **36%**, cuts compactions by **78.4%**, and improves read throughput by up to **1.52×**. These gains are consistent across various workloads (YCSB, SOSD) and storage types (SATA, NVMe, Optane).
+
+Wild Turkey demonstrates that level-aware design and dynamic model tuning are essential for efficiently combining learned indexes with LSM-trees.
+
+
 ## Artifact for Paper #345
 
 This repository includes:
